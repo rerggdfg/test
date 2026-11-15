@@ -970,27 +970,66 @@
         </div>
       </section>
 
-      <!-- СЕКЦИЯ 3: ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ (С ПРИВЯЗКОЙ TELEGRAM И БД) -->
+      <!-- СЕКЦИЯ 3: ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ И ВЫВОД ЗВЁЗД (ОТ 15 ⭐, КОМИССИЯ 15%) -->
       <section id="profileSectionWrap" class="hidden flex-col gap-4">
-        <div class="bg-[#17181C] border border-white/[0.08] rounded-2xl p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div class="flex items-center gap-3.5">
-            <div id="profileAvatarBox" class="w-14 h-14 rounded-2xl bg-gradient-yellow-main flex items-center justify-center font-tektur text-xl font-extrabold text-[#1C1C20] shadow-[0_0_24px_rgba(251,213,6,0.3)] shrink-0 overflow-hidden">
+        <!-- Шапка профиля с аватаркой из Telegram -->
+        <div class="bg-[#17181C] border border-white/[0.08] rounded-2xl p-4 sm:p-6 flex items-center justify-between gap-4">
+          <div class="flex items-center gap-3.5 min-w-0">
+            <div id="profileAvatarBox" class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-yellow-main flex items-center justify-center font-tektur text-xl font-extrabold text-[#1C1C20] shadow-[0_0_24px_rgba(251,213,6,0.3)] shrink-0 overflow-hidden">
               TG
             </div>
-            <div class="flex flex-col">
-              <div class="flex items-center gap-2 flex-wrap">
-                <h2 id="profileDisplayName" class="font-tektur text-base sm:text-lg font-extrabold text-white">Игрок Telegram</h2>
-                <span id="profileDbStatusBadge" class="px-2 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-400/35 text-[10px] font-tektur font-bold text-emerald-300">БД подключена</span>
-              </div>
-              <span id="profileUsernameText" class="text-xs text-white/55 mt-0.5">Загрузка профиля...</span>
+            <div class="flex flex-col min-w-0">
+              <h2 id="profileDisplayName" class="font-tektur text-base sm:text-lg font-extrabold text-white truncate">Игрок Telegram</h2>
+              <span id="profileUsernameText" class="text-xs text-white/55 mt-0.5 truncate">@guest</span>
             </div>
           </div>
 
-          <button type="button" id="syncTelegramBtn" class="bg-gradient-yellow-main px-4 py-2.5 rounded-xl font-tektur text-xs font-extrabold text-[#1C1C20] shadow-[0_4px_16px_rgba(251,213,6,0.28)] hover:brightness-105 active:scale-95 transition-all cursor-pointer">
-            Сохранить в БД бота
-          </button>
+          <div class="text-right shrink-0">
+            <span class="text-[11px] text-white/45 block">Доступно</span>
+            <span id="profileBalanceVal" class="font-tektur text-base sm:text-lg font-extrabold text-[#FBD506]">0.00 ⭐</span>
+          </div>
         </div>
 
+        <!-- Блок вывода Stars (минимум 15 ⭐, комиссия 15%) -->
+        <div class="bg-[#17181C] border border-[#FBD506]/25 rounded-2xl p-4 sm:p-5 flex flex-col gap-3.5">
+          <div class="flex items-center justify-between gap-2 flex-wrap">
+            <div>
+              <h3 class="font-tektur text-sm sm:text-base font-extrabold text-white">Вывод Telegram Stars</h3>
+              <p class="text-[11px] text-white/50">Минимум <strong class="text-white">15 ⭐</strong> • Комиссия сервиса <strong class="text-[#FBD506]">15%</strong></p>
+            </div>
+            <button type="button" id="withdrawMaxBtn" class="px-2.5 py-1 rounded-lg bg-[#FBD506]/15 border border-[#FBD506]/40 font-tektur text-[11px] font-bold text-[#FBD506] hover:bg-[#FBD506]/25 transition-colors cursor-pointer">
+              Вывести всё
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 items-center">
+            <div class="sm:col-span-2 flex items-center bg-[#111215] border border-white/10 focus-within:border-[#FBD506] rounded-xl px-3 h-12">
+              <input id="withdrawAmountInput" type="number" min="15" step="1" placeholder="Введите сумму от 15 ⭐" class="w-full bg-transparent font-tektur text-sm font-bold text-white placeholder:text-white/30 focus:outline-none" />
+              <span class="font-tektur text-xs font-bold text-[#FBD506] ml-2">⭐</span>
+            </div>
+
+            <button type="button" id="submitWithdrawBtn" disabled class="bg-gradient-yellow-main h-12 rounded-xl font-tektur text-xs sm:text-sm font-extrabold uppercase text-[#1C1C20] shadow-[0_4px_18px_rgba(251,213,6,0.28)] hover:brightness-105 active:scale-95 transition-all disabled:opacity-45 disabled:pointer-events-none cursor-pointer">
+              Вывести Stars
+            </button>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2 bg-[#111215] border border-white/[0.06] rounded-xl p-3 text-center">
+            <div class="flex flex-col">
+              <span class="text-[10px] text-white/45">Сумма вывода</span>
+              <span id="wdGrossVal" class="font-tektur text-xs sm:text-sm font-bold text-white mt-0.5">0.00 ⭐</span>
+            </div>
+            <div class="flex flex-col border-x border-white/[0.06]">
+              <span class="text-[10px] text-white/45">Комиссия 15%</span>
+              <span id="wdFeeVal" class="font-tektur text-xs sm:text-sm font-bold text-[#EB4B4B] mt-0.5">-0.00 ⭐</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-[10px] text-white/45">К получению</span>
+              <span id="wdReceiveVal" class="font-tektur text-xs sm:text-sm font-extrabold text-[#53DB42] mt-0.5">0.00 ⭐</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Карточки статистики -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
           <div class="bg-[#17181C] border border-white/[0.06] rounded-xl p-3.5 flex flex-col gap-1">
             <span class="text-[11px] text-white/50">Побед в играх</span>
@@ -1017,6 +1056,7 @@
           </div>
         </div>
 
+        <!-- Последние 15 игр в профиле -->
         <div class="bg-[#17181C] border border-white/[0.06] rounded-xl p-4 flex flex-col gap-2.5">
           <div class="flex items-center justify-between">
             <span class="font-tektur text-sm font-bold text-white">Последние игры</span>
@@ -1296,7 +1336,7 @@
         <p>• <strong>Старт с 0.00 ⭐:</strong> Собирайте ежедневные награды в 7-дневном календаре (от <strong>1 ⭐</strong> в 1-й день до подарка <strong>Crystal Cup</strong> на 7-й день, затем цикл повторяется).</p>
         <p>• <strong>Апгрейд и буст шанса:</strong> Выбирайте подарки от <strong>1 до 500 ⭐</strong> и добавляйте Stars к ставке для увеличения шанса (доступный шанс <strong>0.01% – 80%</strong>).</p>
         <p>• <strong>Mystery Mode:</strong> Нажмите изумрудную кнопку со звёздами перед <code>x2</code>, чтобы запустить магический розыгрыш.</p>
-        <p>• <strong>Батл 1 vs 1:</strong> Загрузите свои подарки или Stars — соперник и стороны распределятся случайным образом.</p>
+        <p>• <strong>Вывод Stars:</strong> Доступен во вкладке «Профиль» от <strong>15 ⭐</strong> (комиссия <strong>15%</strong>).</p>
       </div>
       <button type="button" id="okInfoModalBtn" class="bg-gradient-yellow-main w-full py-2.5 rounded-xl font-tektur text-sm font-bold text-[#1C1C20] cursor-pointer">Понятно</button>
     </div>
@@ -1304,7 +1344,7 @@
 
   <script>
     // =========================================================
-    // 0. TELEGRAM WEB APP SDK + НАДЁЖНОЕ ОПРЕДЕЛЕНИЕ ПРОФИЛЯ И API БД
+    // 0. TELEGRAM WEB APP SDK + ОПРЕДЕЛЕНИЕ ПРОФИЛЯ И АВАТАРКИ
     // =========================================================
     const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
     if (tg) {
@@ -1318,20 +1358,21 @@
 
     function resolveTelegramProfile() {
       const urlParams = new URLSearchParams(window.location.search);
+      const apiBase = (urlParams.get('api') || '').replace(/\/+$/, '');
+      const paramAvatar = urlParams.get('avatar_url') || '';
       let user = null;
 
-      // 1. Основной источник: initDataUnsafe.user
       if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user && tg.initDataUnsafe.user.id) {
+        const u = tg.initDataUnsafe.user;
         user = {
-          id: Number(tg.initDataUnsafe.user.id),
-          first_name: tg.initDataUnsafe.user.first_name || 'Игрок',
-          last_name: tg.initDataUnsafe.user.last_name || '',
-          username: tg.initDataUnsafe.user.username || '',
-          photo_url: tg.initDataUnsafe.user.photo_url || ''
+          id: Number(u.id),
+          first_name: u.first_name || 'Игрок',
+          last_name: u.last_name || '',
+          username: u.username || '',
+          photo_url: u.photo_url || paramAvatar || (apiBase ? `${apiBase}/api/avatar?user_id=${u.id}` : '')
         };
       }
 
-      // 2. Резервный парсинг сырой строки initData
       if (!user && tg && tg.initData) {
         try {
           const initParams = new URLSearchParams(tg.initData);
@@ -1344,25 +1385,24 @@
                 first_name: parsed.first_name || 'Игрок',
                 last_name: parsed.last_name || '',
                 username: parsed.username || '',
-                photo_url: parsed.photo_url || ''
+                photo_url: parsed.photo_url || paramAvatar || (apiBase ? `${apiBase}/api/avatar?user_id=${parsed.id}` : '')
               };
             }
           }
         } catch (e) {}
       }
 
-      // 3. Параметры URL от бота (?uid=...&first_name=...&username=...)
       if (!user && urlParams.get('uid')) {
+        const uid = Number(urlParams.get('uid'));
         user = {
-          id: Number(urlParams.get('uid')),
+          id: uid,
           first_name: urlParams.get('first_name') || 'Игрок',
           last_name: '',
           username: urlParams.get('username') || '',
-          photo_url: urlParams.get('photo_url') || ''
+          photo_url: paramAvatar || (apiBase ? `${apiBase}/api/avatar?user_id=${uid}` : '')
         };
       }
 
-      const apiBase = (urlParams.get('api') || '').replace(/\/+$/, '');
       return { user, apiBase };
     }
 
@@ -1459,11 +1499,13 @@
     }
 
     // =========================================================
-    // 2. СОСТОЯНИЕ, БАЗА ДАННЫХ ДЛЯ КАЖДОГО ПОЛЬЗОВАТЕЛЯ И ТАЙМЕР 24Ч
+    // 2. СОСТОЯНИЕ, БАЗА ДАННЫХ И ВЫВОД ЗВЁЗД (МИН 15 ⭐, КОМИССИЯ 15%)
     // =========================================================
     const USER_DB_KEY = tgUser && tgUser.id ? `tg_${tgUser.id}` : 'guest_local';
     const STORAGE_KEY = `stargrader_db_${USER_DB_KEY}`;
-    const DAILY_COOLDOWN_MS = 24 * 60 * 60 * 1000; // 24 часа
+    const DAILY_COOLDOWN_MS = 24 * 60 * 60 * 1000;
+    const MIN_WITHDRAW_STARS = 15.0;
+    const WITHDRAW_FEE_RATE = 0.15;
 
     const CALC_FACTOR = 0.98;
     const MIN_CHANCE = 0.01;
@@ -1597,7 +1639,6 @@
         }));
       } catch (e) {}
 
-      // Автоматическое сохранение в SQLite (database.py) если задан API_PUBLIC_URL и известен tgUser
       if (DB_API_BASE && tgUser && tgUser.id) {
         fetch(`${DB_API_BASE}/api/user/save`, {
           method: 'POST',
@@ -1632,7 +1673,6 @@
         const json = await resp.json();
         if (json && json.ok && json.user) {
           const u = json.user;
-          // Берём актуальные данные из БД пользователя
           state.balance = Number(u.balance) || 0;
           state.inventory = Array.isArray(u.inventory) ? u.inventory : [];
           state.history = Array.isArray(u.history) ? u.history : [];
@@ -1646,27 +1686,94 @@
       } catch (e) {}
     }
 
-    function syncStatsWithTelegramBot() {
-      saveState();
-      if (!tg) {
-        showToast('Профиль сохранён локально (откройте в Telegram для отправки боту)', 'info');
+    // Расчёт и отправка заявки на вывод звёзд (мин 15 ⭐, комиссия 15%)
+    function updateWithdrawPreview() {
+      const inputEl = document.getElementById('withdrawAmountInput');
+      const submitBtn = document.getElementById('submitWithdrawBtn');
+      const grossEl = document.getElementById('wdGrossVal');
+      const feeEl = document.getElementById('wdFeeVal');
+      const recEl = document.getElementById('wdReceiveVal');
+
+      const val = parseFloat(inputEl.value);
+      if (!Number.isFinite(val) || val <= 0) {
+        grossEl.textContent = '0.00 ⭐';
+        feeEl.textContent = '-0.00 ⭐';
+        recEl.textContent = '0.00 ⭐';
+        submitBtn.disabled = true;
         return;
       }
-      const payload = {
-        action: 'sync_profile',
-        balance: Number(state.balance.toFixed(2)),
-        inventory: state.inventory,
-        history: state.history.slice(0, 15),
-        stats: state.stats,
-        lossStreak: state.lossStreak,
-        dailyDayIndex: state.dailyDayIndex,
-        lastDailyTs: state.lastDailyTs
-      };
-      try {
-        tg.sendData(JSON.stringify(payload));
-      } catch (e) {
-        showToast('Данные сохранены в БД!', 'win');
+
+      const fee = Number((val * WITHDRAW_FEE_RATE).toFixed(2));
+      const receive = Number((val - fee).toFixed(2));
+
+      grossEl.textContent = `${fmtStars(val)} ⭐`;
+      feeEl.textContent = `-${fmtStars(fee)} ⭐`;
+      recEl.textContent = `${fmtStars(receive)} ⭐`;
+
+      const isValid = val >= MIN_WITHDRAW_STARS && val <= state.balance;
+      submitBtn.disabled = !isValid;
+    }
+
+    async function handleWithdrawRequest() {
+      const inputEl = document.getElementById('withdrawAmountInput');
+      const amount = Number((parseFloat(inputEl.value) || 0).toFixed(2));
+
+      if (amount < MIN_WITHDRAW_STARS) {
+        showToast(`Минимальная сумма вывода — ${MIN_WITHDRAW_STARS} ⭐`, 'lose');
+        return;
       }
+      if (amount > state.balance) {
+        showToast('Недостаточно Stars на балансе', 'lose');
+        return;
+      }
+
+      const fee = Number((amount * WITHDRAW_FEE_RATE).toFixed(2));
+      const receive = Number((amount - fee).toFixed(2));
+
+      if (DB_API_BASE && tgUser && tgUser.id) {
+        try {
+          const resp = await fetch(`${DB_API_BASE}/api/withdraw`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              user_id: tgUser.id,
+              username: tgUser.username || '',
+              first_name: tgUser.first_name || 'Игрок',
+              amount
+            })
+          });
+          const json = await resp.json();
+          if (json && json.ok) {
+            state.balance = Number(json.balance);
+            inputEl.value = '';
+            saveState();
+            renderAll();
+            showToast(`Заявка на вывод ${fmtStars(receive)} ⭐ отправлена!`, 'win');
+            return;
+          } else if (json && json.error) {
+            showToast(json.error, 'lose');
+            return;
+          }
+        } catch (e) {}
+      }
+
+      // Fallback через Telegram WebApp sendData, если API не проброшен
+      state.balance = Math.max(0, Number((state.balance - amount).toFixed(2)));
+      inputEl.value = '';
+      saveState();
+      renderAll();
+
+      if (tg) {
+        try {
+          tg.sendData(JSON.stringify({
+            action: 'withdraw',
+            amount,
+            fee,
+            receive_amount: receive
+          }));
+        } catch (e) {}
+      }
+      showToast(`Заявка создана! К получению: ${fmtStars(receive)} ⭐ (комиссия 15%)`, 'win');
     }
 
     function detectAndApplyDeviceLayout() {
@@ -1880,7 +1987,7 @@
     }
 
     // =========================================================
-    // 5. ЕЖЕДНЕВНЫЙ 7-ДНЕВНЫЙ КАЛЕНДАРЬ (СЕРЫЕ БУДУЩИЕ ДНИ И ТАЙМЕР)
+    // 5. ЕЖЕДНЕВНЫЙ 7-ДНЕВНЫЙ КАЛЕНДАРЬ
     // =========================================================
     let dailyTimerInterval = null;
 
@@ -1948,8 +2055,6 @@
       const currentIdx = state.dailyDayIndex;
 
       grid.innerHTML = DAILY_REWARDS_7D.map((item, idx) => {
-        // Зелёным помечаются ТОЛЬКО уже забранные дни (< currentIdx).
-        // Все будущие дни (в т.ч. 2-й день, пока он не забран) остаются нейтральными серыми!
         const isClaimed = idx < currentIdx;
         const isTodayAvailable = idx === currentIdx && available;
         const isNextLocked = idx === currentIdx && !available;
@@ -1968,7 +2073,6 @@
           borderClass = 'border-white/15 bg-[#1B1C20] opacity-75';
           badgeHtml = '<span class="text-white/45">ЖДЁТ</span>';
         } else {
-          // Будущие дни (день 2, 3, ..., 7 до их наступления) — строго серые
           borderClass = 'border-white/[0.07] bg-[#18191D] opacity-60';
           badgeHtml = '';
         }
@@ -2011,7 +2115,6 @@
         showToast(`День 7: получен подарок ${giftObj.name} (${giftObj.price} ⭐)!`, 'win');
       }
 
-      // После 7-го дня (индекс 6) цикл сбрасывается и начинается заново с 1-го дня (индекс 0)
       state.dailyDayIndex = (state.dailyDayIndex + 1) % 7;
 
       playWinSound();
@@ -2237,17 +2340,14 @@
         targetAngleDeg = (180 + edgeBias + 360) % 360;
       } else {
         const loseSpan = 360 - halfDeg * 2;
-        // Минимум 3.4° (~2-3 мм по дуге колеса) и до 8.5° от границы сектора, чтобы не было остановки в 1 мм
-        const minBaitOffset = Math.min(3.4, loseSpan * 0.25);
+        const minBaitOffset = Math.min(3.6, loseSpan * 0.25);
         const maxBaitOffset = Math.max(minBaitOffset + 1.5, Math.min(8.5, loseSpan * 0.42));
 
         if (Math.random() < 0.85) {
           const baitGap = minBaitOffset + Math.random() * (maxBaitOffset - minBaitOffset);
           if (Math.random() < 0.5) {
-            // Недокат на 2-3+ мм до начала сектора
             targetAngleDeg = (winStart - baitGap + 360) % 360;
           } else {
-            // Перекат на 2-3+ мм после конца сектора
             targetAngleDeg = (winEnd + baitGap) % 360;
           }
         } else {
@@ -3175,29 +3275,33 @@
     }
 
     // =========================================================
-    // 11. РЕНДЕР ВСЕГО ИНТЕРФЕЙСА И ПРОФИЛЯ TELEGRAM
+    // 11. РЕНДЕР ВСЕГО ИНТЕРФЕЙСА И ПРОФИЛЯ TELEGRAM (С АВАТАРКОЙ)
     // =========================================================
     function renderProfileSection() {
       const avatarBox = document.getElementById('profileAvatarBox');
       const nameEl = document.getElementById('profileDisplayName');
       const userSubEl = document.getElementById('profileUsernameText');
-      const dbBadge = document.getElementById('profileDbStatusBadge');
+      const profBalEl = document.getElementById('profileBalanceVal');
+
+      if (profBalEl) {
+        profBalEl.textContent = `${fmtStars(state.balance)} ⭐`;
+      }
 
       if (tgUser && tgUser.id) {
         const fullName = [tgUser.first_name, tgUser.last_name].filter(Boolean).join(' ') || 'Игрок Telegram';
+        const initials = (tgUser.first_name || 'TG').slice(0, 2).toUpperCase();
         nameEl.textContent = fullName;
-        userSubEl.textContent = `${tgUser.username ? '@' + tgUser.username : 'Без @username'} • ID: ${tgUser.id}`;
+        userSubEl.textContent = `${tgUser.username ? '@' + tgUser.username : 'ID ' + tgUser.id}`;
+
         if (tgUser.photo_url) {
-          avatarBox.innerHTML = `<img src="${tgUser.photo_url}" alt="Avatar" class="w-full h-full object-cover" />`;
+          avatarBox.innerHTML = `<img src="${tgUser.photo_url}" alt="Avatar" class="w-full h-full object-cover" onerror="this.parentElement.textContent='${initials}'" />`;
         } else {
-          avatarBox.textContent = (tgUser.first_name || 'TG').slice(0, 2).toUpperCase();
+          avatarBox.textContent = initials;
         }
-        dbBadge.textContent = DB_API_BASE ? 'БД Telegram (Online)' : 'БД Telegram (Локально)';
       } else {
         nameEl.textContent = 'Игрок Telegram';
-        userSubEl.textContent = 'Запустите Web App через кнопку в боте';
+        userSubEl.textContent = '@guest';
         avatarBox.textContent = 'TG';
-        dbBadge.textContent = 'Локальная БД';
       }
 
       const { games, wins, losses, totalWagered, totalWon } = state.stats;
@@ -3210,6 +3314,8 @@
       document.getElementById('statWageredVal').textContent = `${fmtStars(totalWagered)} ⭐`;
       document.getElementById('statWonVal').textContent = `${fmtStars(totalWon)} ⭐`;
       document.getElementById('statStreakSub').textContent = `Календарь: День ${state.dailyDayIndex + 1}/7`;
+
+      updateWithdrawPreview();
 
       const listEl = document.getElementById('profileRecentGamesList');
       if (state.history.length === 0) {
@@ -3644,7 +3750,6 @@
       detectAndApplyDeviceLayout();
       loadRemoteDbState();
 
-      // Фоновое обновление индикатора ежедневного бонуса в шапке
       setInterval(() => {
         const readyDot = document.getElementById('dailyReadyDot');
         if (readyDot) {
@@ -3669,7 +3774,14 @@
         if (e.target.id === 'dailyModalBackdrop') closeDailyModal();
       });
 
-      document.getElementById('syncTelegramBtn').addEventListener('click', syncStatsWithTelegramBot);
+      // Вывод Stars (от 15 ⭐, комиссия 15%)
+      document.getElementById('withdrawAmountInput').addEventListener('input', updateWithdrawPreview);
+      document.getElementById('withdrawMaxBtn').addEventListener('click', () => {
+        const inputEl = document.getElementById('withdrawAmountInput');
+        inputEl.value = Math.floor(state.balance * 100) / 100;
+        updateWithdrawPreview();
+      });
+      document.getElementById('submitWithdrawBtn').addEventListener('click', handleWithdrawRequest);
 
       document.getElementById('resetProgressBtn').addEventListener('click', () => {
         if (state.spinning || state.battleSpinning) return;
