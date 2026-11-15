@@ -41,9 +41,7 @@
       padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
     }
     @media (min-width: 768px) {
-      body {
-        padding-bottom: 0;
-      }
+      body { padding-bottom: 0; }
     }
 
     .font-tektur { font-family: 'Tektur', sans-serif; }
@@ -112,10 +110,7 @@
       touch-action: manipulation;
     }
     @media (min-width: 640px) {
-      .fast-btn-skew {
-        height: 39px;
-        font-size: 13px;
-      }
+      .fast-btn-skew { height: 39px; font-size: 13px; }
     }
     .fast-btn-skew > span,
     .fast-btn-skew > svg {
@@ -127,10 +122,7 @@
       border-color: rgba(251, 213, 6, 0.55);
       transform: skewX(-7deg) translateY(-1px);
     }
-    .fast-btn-skew:disabled {
-      opacity: 0.42;
-      cursor: not-allowed;
-    }
+    .fast-btn-skew:disabled { opacity: 0.42; cursor: not-allowed; }
     .btn-gradient-1 {
       background: linear-gradient(#17181C 0 0) padding-box, linear-gradient(135deg, #e64e4c 30%, #23242A 65%) border-box;
       border: 1px solid transparent;
@@ -166,10 +158,7 @@
       cursor: pointer;
       transition: all 0.22s ease;
     }
-    .mystery-btn-skew > svg {
-      transform: skewX(7deg);
-      pointer-events: none;
-    }
+    .mystery-btn-skew > svg { transform: skewX(7deg); pointer-events: none; }
     .mystery-btn-skew:hover {
       border-color: #4ADE80;
       box-shadow: 0 0 16px rgba(52, 211, 153, 0.45), inset 0 0 12px rgba(52, 211, 153, 0.35);
@@ -214,12 +203,8 @@
       overflow: hidden;
       transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     }
-    @media (min-width: 640px) {
-      .slot-card { min-height: 210px; padding: 14px; }
-    }
-    @media (min-width: 1024px) {
-      .slot-card { aspect-ratio: 23.2 / 21.5; padding: 18px; }
-    }
+    @media (min-width: 640px) { .slot-card { min-height: 210px; padding: 14px; } }
+    @media (min-width: 1024px) { .slot-card { aspect-ratio: 23.2 / 21.5; padding: 18px; } }
 
     .slot-card.mystery-right-slot {
       border-color: rgba(52, 211, 153, 0.55);
@@ -356,9 +341,10 @@
       padding: 8px;
     }
 
+    /* Плашки процентов (z-index: 12 — ниже стрелки pointer-pivot z-index: 25) */
     .wheel-scale-badge {
       position: absolute;
-      z-index: 15;
+      z-index: 12;
       pointer-events: none;
       font-family: 'Tektur', sans-serif;
       font-size: 11px;
@@ -376,13 +362,14 @@
       .wheel-scale-badge { font-size: 12px; padding: 3px 8px; }
     }
 
+    /* Стрелка-указатель (z-index: 25 — строго ПОВЕРХ процентов 100%, 50%, 0%) */
     .pointer-pivot {
       position: absolute;
       top: 50%;
       left: 50%;
       width: 0;
       height: 0;
-      z-index: 14;
+      z-index: 25;
       pointer-events: none;
       will-change: transform;
     }
@@ -392,7 +379,7 @@
       left: -17px;
       width: 34px;
       height: 36px;
-      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.9));
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.95));
     }
     @media (min-width: 640px) {
       .pointer-badge { top: -150px; left: -18px; width: 36px; height: 38px; }
@@ -612,7 +599,6 @@
       transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.85s ease;
     }
 
-    /* Нижняя мобильная панель навигации */
     .mobile-bottom-nav {
       position: fixed;
       bottom: 0;
@@ -676,13 +662,12 @@
         <span id="headerBalanceVal" class="font-tektur text-xs sm:text-sm lg:text-base font-bold text-white tabular-nums">0.00</span>
       </div>
 
-      <!-- Кнопка 7-дневного календаря наград -->
       <button type="button" id="openDailyModalBtn" class="relative bg-gradient-yellow-main flex h-8 sm:h-9 lg:h-10 items-center gap-1.5 rounded-[10px] px-2.5 sm:px-3 text-[11px] sm:text-xs font-tektur font-extrabold text-[#1C1C20] shadow-[0_0_14px_rgba(251,213,6,0.3)] hover:brightness-105 active:scale-95 transition-all cursor-pointer whitespace-nowrap">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
           <rect x="3" y="4" width="18" height="17" rx="3" stroke="#1C1C20" stroke-width="2.2"/>
           <path d="M8 2V6M16 2V6M3 10H21" stroke="#1C1C20" stroke-width="2.2" stroke-linecap="round"/>
         </svg>
-        <span id="headerDailyBtnText">Бонус 7д</span>
+        <span id="headerDailyBtnText">День 1/7</span>
         <span id="dailyReadyDot" class="hidden absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 ring-2 ring-[#17181C]"></span>
       </button>
 
@@ -754,7 +739,6 @@
       <!-- СЕКЦИЯ 1: СТАНДАРТНЫЙ АПГРЕЙД / MYSTERY MODE -->
       <section id="upgradeSectionWrap" class="flex flex-col gap-4">
         <div class="upgrade-arena-grid">
-          <!-- Левый слот: Ваша ставка -->
           <div id="leftSlotCard" class="slot-card">
             <div class="z-10 flex flex-col items-center text-center gap-1 pt-0.5">
               <span id="leftSlotTitle" class="text-[11px] lg:text-xs font-bold text-white">Выберите подарки или добавьте Stars</span>
@@ -775,12 +759,10 @@
             </div>
           </div>
 
-          <!-- Центральная рулетка / Магический портал Mystery Mode -->
           <div class="wheel-stage-cell">
             <div class="wheel-wrapper" id="wheelWrapper">
               <canvas id="upgradeWheelCanvas"></canvas>
 
-              <!-- Магический портал Mystery Mode -->
               <div id="mysteryPortalStage" class="mystery-portal-stage hidden">
                 <div class="mystery-portal-ring-1"></div>
                 <div class="mystery-portal-ring-2"></div>
@@ -796,11 +778,13 @@
                 </div>
               </div>
 
+              <!-- Плашки процентов (z-index: 12) -->
               <span id="scaleLabel100" class="wheel-scale-badge top-[6px] left-1/2 -translate-x-1/2">100%</span>
               <span id="scaleLabel50L" class="wheel-scale-badge top-1/2 left-[6px] -translate-y-1/2">50%</span>
               <span id="scaleLabel50R" class="wheel-scale-badge top-1/2 right-[6px] -translate-y-1/2">50%</span>
               <span id="scaleLabel0" class="wheel-scale-badge bottom-[6px] left-1/2 -translate-x-1/2 text-[#FF6B6B] border-[#FF6B6B]/40">0%</span>
 
+              <!-- Стрелка-указатель (z-index: 25 — строго ПОВЕРХ процентов) -->
               <div id="wheelPointerPivot" class="pointer-pivot" style="transform: rotate(180deg);">
                 <svg class="pointer-badge" viewBox="0 0 40 42" fill="none">
                   <defs>
@@ -822,7 +806,6 @@
             </div>
           </div>
 
-          <!-- Правый слот: Желаемая награда / Mystery слот -->
           <div id="rightSlotCard" class="slot-card">
             <div id="rightSlotHeader" class="z-10 flex flex-col items-center text-center gap-1 pt-0.5">
               <span id="rightSlotTitle" class="text-[11px] lg:text-xs font-bold text-white">Выберите цель для апгрейда</span>
@@ -844,7 +827,6 @@
           </div>
         </div>
 
-        <!-- Нижняя панель управления ставкой -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-3 items-center">
           <div class="bg-block rounded-xl p-3 border border-white/[0.06] flex flex-col gap-2">
             <div class="flex items-center justify-between gap-2">
@@ -988,28 +970,27 @@
         </div>
       </section>
 
-      <!-- СЕКЦИЯ 3: ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ (ВМЕСТО ИСТОРИИ) -->
+      <!-- СЕКЦИЯ 3: ПРОФИЛЬ ПОЛЬЗОВАТЕЛЯ (С ПРИВЯЗКОЙ TELEGRAM И БД) -->
       <section id="profileSectionWrap" class="hidden flex-col gap-4">
         <div class="bg-[#17181C] border border-white/[0.08] rounded-2xl p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div class="flex items-center gap-3.5">
-            <div id="profileAvatarBox" class="w-14 h-14 rounded-2xl bg-gradient-yellow-main flex items-center justify-center font-tektur text-xl font-extrabold text-[#1C1C20] shadow-[0_0_24px_rgba(251,213,6,0.3)] shrink-0">
+            <div id="profileAvatarBox" class="w-14 h-14 rounded-2xl bg-gradient-yellow-main flex items-center justify-center font-tektur text-xl font-extrabold text-[#1C1C20] shadow-[0_0_24px_rgba(251,213,6,0.3)] shrink-0 overflow-hidden">
               TG
             </div>
             <div class="flex flex-col">
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-2 flex-wrap">
                 <h2 id="profileDisplayName" class="font-tektur text-base sm:text-lg font-extrabold text-white">Игрок Telegram</h2>
-                <span id="profileTgBadge" class="px-2 py-0.5 rounded-md bg-sky-500/15 border border-sky-400/35 text-[10px] font-tektur font-bold text-sky-300">Web App</span>
+                <span id="profileDbStatusBadge" class="px-2 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-400/35 text-[10px] font-tektur font-bold text-emerald-300">БД подключена</span>
               </div>
-              <span id="profileUsernameText" class="text-xs text-white/50">@guest • ID: локальный режим</span>
+              <span id="profileUsernameText" class="text-xs text-white/55 mt-0.5">Загрузка профиля...</span>
             </div>
           </div>
 
           <button type="button" id="syncTelegramBtn" class="bg-gradient-yellow-main px-4 py-2.5 rounded-xl font-tektur text-xs font-extrabold text-[#1C1C20] shadow-[0_4px_16px_rgba(251,213,6,0.28)] hover:brightness-105 active:scale-95 transition-all cursor-pointer">
-            Синхронизировать с ботом
+            Сохранить в БД бота
           </button>
         </div>
 
-        <!-- Карточки статистики -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
           <div class="bg-[#17181C] border border-white/[0.06] rounded-xl p-3.5 flex flex-col gap-1">
             <span class="text-[11px] text-white/50">Побед в играх</span>
@@ -1032,11 +1013,10 @@
           <div class="bg-[#17181C] border border-white/[0.06] rounded-xl p-3.5 flex flex-col gap-1">
             <span class="text-[11px] text-white/50">Сумма выигрышей</span>
             <span id="statWonVal" class="font-tektur text-xl font-extrabold text-emerald-300">0.00 ⭐</span>
-            <span id="statStreakSub" class="text-[10px] text-white/40">Серия бонусов: 0/7 дн.</span>
+            <span id="statStreakSub" class="text-[10px] text-white/40">Календарь: День 1/7</span>
           </div>
         </div>
 
-        <!-- Последние 10 игр в профиле -->
         <div class="bg-[#17181C] border border-white/[0.06] rounded-xl p-4 flex flex-col gap-2.5">
           <div class="flex items-center justify-between">
             <span class="font-tektur text-sm font-bold text-white">Последние игры</span>
@@ -1046,9 +1026,8 @@
         </div>
       </section>
 
-      <!-- СЕКЦИЯ 4: НИЖНИЕ ДВЕ ТАБЛИЦЫ (ТОЛЬКО ИНВЕНТАРЬ И ВЫБОР ЦЕЛИ) -->
+      <!-- СЕКЦИЯ 4: НИЖНИЕ ДВЕ ТАБЛИЦЫ -->
       <section id="bottomTablesGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-3 pt-1">
-        <!-- Левая таблица: Мои подарки -->
         <div id="leftInventoryTableBox" class="bg-block rounded-xl border border-white/[0.06] flex flex-col min-h-[420px] relative overflow-hidden">
           <div class="bg-[#1E1F23] p-3 flex flex-wrap items-center justify-between gap-2 border-b border-white/[0.05]">
             <div class="flex items-center gap-2">
@@ -1065,7 +1044,6 @@
           <div class="relative flex-1 p-2.5 overflow-y-auto max-h-[440px]">
             <div id="leftTableGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2"></div>
 
-            <!-- Оверлей при пустом инвентаре -->
             <div id="emptyInventoryOverlay" class="hidden absolute inset-0 bg-[#17181C]/85 backdrop-blur-xs flex flex-col items-center justify-center p-4 text-center z-10">
               <div class="bg-[#1E1F23] border border-white/10 rounded-xl px-6 py-6 flex flex-col items-center gap-3 shadow-xl max-w-[270px]">
                 <span class="text-sm font-bold text-white">Инвентарь подарков пуст</span>
@@ -1078,7 +1056,6 @@
           </div>
         </div>
 
-        <!-- Правая таблица: Выберите цель -->
         <div id="rightTargetsTableBox" class="bg-block rounded-xl border border-white/[0.06] flex flex-col min-h-[420px] overflow-hidden">
           <div class="bg-[#1E1F23] p-3 flex flex-wrap items-center justify-between gap-2 border-b border-white/[0.05]">
             <div class="flex items-center gap-2">
@@ -1113,7 +1090,7 @@
     </main>
   </div>
 
-  <!-- МОБИЛЬНАЯ НИЖНЯЯ НАВИГАЦИЯ (БЕЗ МАГАЗИНА И ИСТОРИИ — ТОЛЬКО АПГРЕЙД, БАТЛ, ПРОФИЛЬ) -->
+  <!-- МОБИЛЬНАЯ НИЖНЯЯ НАВИГАЦИЯ -->
   <nav class="mobile-bottom-nav md:hidden" aria-label="Мобильная навигация">
     <button type="button" data-nav="upgrade" class="nav-tab-btn flex flex-col items-center justify-center gap-0.5 flex-1 h-full text-[10px] font-tektur font-bold uppercase text-[#FDD911] cursor-pointer">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 14.4L12 8.5L4 14.4V8.9L12 3L20 8.9V14.4Z" fill="currentColor"/><path d="M18.5 16.7V21L12 16.3L5.5 21V16.7L12 12L18.5 16.7Z" fill="currentColor"/></svg>
@@ -1138,7 +1115,7 @@
       <div class="flex items-center justify-between">
         <div>
           <h3 class="font-tektur text-lg font-extrabold text-white">Ежедневный календарь</h3>
-          <p class="text-[11px] text-white/55">Заходите каждый день. После 7-го дня цикл начинается заново!</p>
+          <p class="text-[11px] text-white/55">Награда раз в 24 часа. После 7-го дня цикл начинается заново!</p>
         </div>
         <button type="button" id="closeDailyModalBtn" class="text-white/45 hover:text-white p-1 text-lg cursor-pointer">✕</button>
       </div>
@@ -1146,9 +1123,12 @@
       <div id="dailyCalendarGrid" class="grid grid-cols-3 sm:grid-cols-4 gap-2"></div>
 
       <div class="flex flex-col sm:flex-row items-center justify-between gap-3 bg-[#1E1F23] border border-white/[0.06] rounded-xl p-3">
-        <span id="dailyStatusHint" class="text-xs text-white/70">Награда дня готова к получению</span>
-        <button type="button" id="claimDailyRewardBtn" class="bg-gradient-yellow-main w-full sm:w-auto px-5 py-2.5 rounded-xl font-tektur text-xs font-extrabold text-[#1C1C20] shadow-[0_4px_16px_rgba(251,213,6,0.3)] hover:brightness-105 active:scale-95 transition-all disabled:opacity-45 disabled:pointer-events-none cursor-pointer">
-          Забрать награду
+        <div class="flex flex-col text-center sm:text-left">
+          <span id="dailyStatusHint" class="text-xs font-semibold text-white/85">Награда дня готова</span>
+          <span id="dailyCountdownTimerText" class="font-tektur text-[11px] text-[#FBD506] mt-0.5">Доступно прямо сейчас</span>
+        </div>
+        <button type="button" id="claimDailyRewardBtn" class="bg-gradient-yellow-main w-full sm:w-auto px-5 py-2.5 rounded-xl font-tektur text-xs font-extrabold text-[#1C1C20] shadow-[0_4px_16px_rgba(251,213,6,0.35)] hover:brightness-105 active:scale-95 transition-all disabled:opacity-45 disabled:pointer-events-none cursor-pointer flex items-center justify-center gap-1.5">
+          <span id="claimDailyBtnContent">Забрать</span>
         </button>
       </div>
     </div>
@@ -1324,7 +1304,7 @@
 
   <script>
     // =========================================================
-    // 0. TELEGRAM WEB APP SDK И ДАННЫЕ ПОЛЬЗОВАТЕЛЯ
+    // 0. TELEGRAM WEB APP SDK + НАДЁЖНОЕ ОПРЕДЕЛЕНИЕ ПРОФИЛЯ И API БД
     // =========================================================
     const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
     if (tg) {
@@ -1336,7 +1316,57 @@
       } catch (e) {}
     }
 
-    const tgUser = (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) ? tg.initDataUnsafe.user : null;
+    function resolveTelegramProfile() {
+      const urlParams = new URLSearchParams(window.location.search);
+      let user = null;
+
+      // 1. Основной источник: initDataUnsafe.user
+      if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user && tg.initDataUnsafe.user.id) {
+        user = {
+          id: Number(tg.initDataUnsafe.user.id),
+          first_name: tg.initDataUnsafe.user.first_name || 'Игрок',
+          last_name: tg.initDataUnsafe.user.last_name || '',
+          username: tg.initDataUnsafe.user.username || '',
+          photo_url: tg.initDataUnsafe.user.photo_url || ''
+        };
+      }
+
+      // 2. Резервный парсинг сырой строки initData
+      if (!user && tg && tg.initData) {
+        try {
+          const initParams = new URLSearchParams(tg.initData);
+          const rawUser = initParams.get('user');
+          if (rawUser) {
+            const parsed = JSON.parse(rawUser);
+            if (parsed && parsed.id) {
+              user = {
+                id: Number(parsed.id),
+                first_name: parsed.first_name || 'Игрок',
+                last_name: parsed.last_name || '',
+                username: parsed.username || '',
+                photo_url: parsed.photo_url || ''
+              };
+            }
+          }
+        } catch (e) {}
+      }
+
+      // 3. Параметры URL от бота (?uid=...&first_name=...&username=...)
+      if (!user && urlParams.get('uid')) {
+        user = {
+          id: Number(urlParams.get('uid')),
+          first_name: urlParams.get('first_name') || 'Игрок',
+          last_name: '',
+          username: urlParams.get('username') || '',
+          photo_url: urlParams.get('photo_url') || ''
+        };
+      }
+
+      const apiBase = (urlParams.get('api') || '').replace(/\/+$/, '');
+      return { user, apiBase };
+    }
+
+    const { user: tgUser, apiBase: DB_API_BASE } = resolveTelegramProfile();
 
     // =========================================================
     // 1. КАТАЛОГ ПОДАРКОВ TELEGRAM (1 — 500 ⭐) И SVG
@@ -1368,7 +1398,6 @@
       { id: 'g24', name: 'Golden Star',    tag: 'NFT • Immortal',   price: 500, color: '#FBD506', svgType: 'star' }
     ];
 
-    // 7-дневный календарь наград (от 1 ⭐ до простого подарка Crystal Cup на 7 день, потом цикл заново)
     const DAILY_REWARDS_7D = [
       { day: 1, type: 'stars', amount: 1,  label: '1 ⭐',          sub: 'День 1', svgType: 'star' },
       { day: 2, type: 'stars', amount: 2,  label: '2 ⭐',          sub: 'День 2', svgType: 'star' },
@@ -1430,10 +1459,12 @@
     }
 
     // =========================================================
-    // 2. СОСТОЯНИЕ И СОХРАНЕНИЕ (СТАРТ С 0.00 ⭐)
+    // 2. СОСТОЯНИЕ, БАЗА ДАННЫХ ДЛЯ КАЖДОГО ПОЛЬЗОВАТЕЛЯ И ТАЙМЕР 24Ч
     // =========================================================
-    const USER_ID_SUFFIX = tgUser ? String(tgUser.id) : 'guest';
-    const STORAGE_KEY = `stargrader_webapp_v1_${USER_ID_SUFFIX}`;
+    const USER_DB_KEY = tgUser && tgUser.id ? `tg_${tgUser.id}` : 'guest_local';
+    const STORAGE_KEY = `stargrader_db_${USER_DB_KEY}`;
+    const DAILY_COOLDOWN_MS = 24 * 60 * 60 * 1000; // 24 часа
+
     const CALC_FACTOR = 0.98;
     const MIN_CHANCE = 0.01;
     const MAX_CHANCE = 80.0;
@@ -1469,10 +1500,8 @@
       lockedMystery: false,
       lossStreak: 0,
       history: [],
-      // Ежедневный 7-дневный календарь
-      dailyDayIndex: 0,     // 0..6 (текущий доступный день цикла)
-      lastDailyDate: '',    // 'YYYY-MM-DD' последнего получения
-      // Статистика профиля
+      dailyDayIndex: 0,
+      lastDailyTs: 0,
       stats: {
         games: 0,
         wins: 0,
@@ -1496,19 +1525,25 @@
       battleLockedUserBet: 0
     };
 
-    function getTodayDateKey() {
-      const d = new Date();
-      const y = d.getFullYear();
-      const m = String(d.getMonth() + 1).padStart(2, '0');
-      const day = String(d.getDate()).padStart(2, '0');
-      return `${y}-${m}-${day}`;
+    function getRemainingDailyMs() {
+      if (!state.lastDailyTs) return 0;
+      const elapsed = Date.now() - state.lastDailyTs;
+      return Math.max(0, DAILY_COOLDOWN_MS - elapsed);
     }
 
-    function canClaimDailyToday() {
-      return state.lastDailyDate !== getTodayDateKey();
+    function canClaimDailyNow() {
+      return getRemainingDailyMs() === 0;
     }
 
-    function loadState() {
+    function formatCountdown(ms) {
+      const totalSec = Math.ceil(ms / 1000);
+      const h = String(Math.floor(totalSec / 3600)).padStart(2, '0');
+      const m = String(Math.floor((totalSec % 3600) / 60)).padStart(2, '0');
+      const s = String(totalSec % 60).padStart(2, '0');
+      return `${h}:${m}:${s}`;
+    }
+
+    function loadLocalState() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) return;
@@ -1520,7 +1555,7 @@
         if (typeof parsed.fastAnim === 'boolean') state.fastAnim = parsed.fastAnim;
         if (typeof parsed.lossStreak === 'number') state.lossStreak = Math.max(0, Math.min(MAX_LOSS_STREAK, parsed.lossStreak));
         if (typeof parsed.dailyDayIndex === 'number') state.dailyDayIndex = Math.max(0, Math.min(6, parsed.dailyDayIndex));
-        if (typeof parsed.lastDailyDate === 'string') state.lastDailyDate = parsed.lastDailyDate;
+        if (typeof parsed.lastDailyTs === 'number') state.lastDailyTs = parsed.lastDailyTs;
         if (parsed.stats && typeof parsed.stats === 'object') {
           state.stats = {
             games: Number(parsed.stats.games) || 0,
@@ -1555,34 +1590,82 @@
           fastAnim: state.fastAnim,
           lossStreak: state.lossStreak,
           dailyDayIndex: state.dailyDayIndex,
-          lastDailyDate: state.lastDailyDate,
+          lastDailyTs: state.lastDailyTs,
           stats: state.stats,
           customMults: state.customMults,
           customChances: state.customChances
         }));
       } catch (e) {}
+
+      // Автоматическое сохранение в SQLite (database.py) если задан API_PUBLIC_URL и известен tgUser
+      if (DB_API_BASE && tgUser && tgUser.id) {
+        fetch(`${DB_API_BASE}/api/user/save`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            user_id: tgUser.id,
+            username: tgUser.username || '',
+            first_name: tgUser.first_name || 'Игрок',
+            photo_url: tgUser.photo_url || '',
+            balance: state.balance,
+            inventory: state.inventory,
+            history: state.history.slice(0, 30),
+            stats: state.stats,
+            lossStreak: state.lossStreak,
+            dailyDayIndex: state.dailyDayIndex,
+            lastDailyTs: state.lastDailyTs
+          })
+        }).catch(() => {});
+      }
+    }
+
+    async function loadRemoteDbState() {
+      if (!DB_API_BASE || !tgUser || !tgUser.id) return;
+      try {
+        const qs = new URLSearchParams({
+          user_id: String(tgUser.id),
+          username: tgUser.username || '',
+          first_name: tgUser.first_name || 'Игрок',
+          photo_url: tgUser.photo_url || ''
+        });
+        const resp = await fetch(`${DB_API_BASE}/api/user?${qs.toString()}`);
+        const json = await resp.json();
+        if (json && json.ok && json.user) {
+          const u = json.user;
+          // Берём актуальные данные из БД пользователя
+          state.balance = Number(u.balance) || 0;
+          state.inventory = Array.isArray(u.inventory) ? u.inventory : [];
+          state.history = Array.isArray(u.history) ? u.history : [];
+          state.stats = u.stats || state.stats;
+          state.lossStreak = Number(u.lossStreak) || 0;
+          state.dailyDayIndex = Number(u.dailyDayIndex) || 0;
+          state.lastDailyTs = Number(u.lastDailyTs) || 0;
+          saveState();
+          renderAll();
+        }
+      } catch (e) {}
     }
 
     function syncStatsWithTelegramBot() {
+      saveState();
       if (!tg) {
-        showToast('Откройте приложение внутри Telegram-бота для отправки статистики', 'info');
+        showToast('Профиль сохранён локально (откройте в Telegram для отправки боту)', 'info');
         return;
       }
       const payload = {
         action: 'sync_profile',
         balance: Number(state.balance.toFixed(2)),
-        inventory_count: state.inventory.length,
-        games: state.stats.games,
-        wins: state.stats.wins,
-        losses: state.stats.losses,
-        total_wagered: Number(state.stats.totalWagered.toFixed(2)),
-        total_won: Number(state.stats.totalWon.toFixed(2)),
-        daily_day: state.dailyDayIndex + 1
+        inventory: state.inventory,
+        history: state.history.slice(0, 15),
+        stats: state.stats,
+        lossStreak: state.lossStreak,
+        dailyDayIndex: state.dailyDayIndex,
+        lastDailyTs: state.lastDailyTs
       };
       try {
         tg.sendData(JSON.stringify(payload));
       } catch (e) {
-        showToast('Не удалось отправить данные боту', 'lose');
+        showToast('Данные сохранены в БД!', 'win');
       }
     }
 
@@ -1797,43 +1880,106 @@
     }
 
     // =========================================================
-    // 5. ЕЖЕДНЕВНЫЙ 7-ДНЕВНЫЙ КАЛЕНДАРЬ БОНУСОВ
+    // 5. ЕЖЕДНЕВНЫЙ 7-ДНЕВНЫЙ КАЛЕНДАРЬ (СЕРЫЕ БУДУЩИЕ ДНИ И ТАЙМЕР)
     // =========================================================
+    let dailyTimerInterval = null;
+
     function openDailyModal() {
       renderDailyCalendar();
       const backdrop = document.getElementById('dailyModalBackdrop');
       backdrop.classList.remove('hidden');
       backdrop.classList.add('flex');
+      if (dailyTimerInterval) clearInterval(dailyTimerInterval);
+      dailyTimerInterval = setInterval(updateDailyTimersOnly, 1000);
     }
 
     function closeDailyModal() {
       const backdrop = document.getElementById('dailyModalBackdrop');
       backdrop.classList.add('hidden');
       backdrop.classList.remove('flex');
+      if (dailyTimerInterval) {
+        clearInterval(dailyTimerInterval);
+        dailyTimerInterval = null;
+      }
+    }
+
+    function updateDailyTimersOnly() {
+      const rem = getRemainingDailyMs();
+      const timerEl = document.getElementById('dailyCountdownTimerText');
+      const hintEl = document.getElementById('dailyStatusHint');
+      const claimBtn = document.getElementById('claimDailyRewardBtn');
+      const btnContent = document.getElementById('claimDailyBtnContent');
+      const readyDot = document.getElementById('dailyReadyDot');
+      const todayItem = DAILY_REWARDS_7D[state.dailyDayIndex];
+
+      const starIconDark = `<svg width="13" height="13" viewBox="0 0 24 24" fill="#1C1C20" class="inline-block shrink-0"><path d="M12 2L14.9 8.2L21.7 9.1L16.7 13.8L17.9 20.6L12 17.3L6.1 20.6L7.3 13.8L2.3 9.1L9.1 8.2L12 2Z"/></svg>`;
+
+      if (rem === 0) {
+        if (readyDot) readyDot.classList.remove('hidden');
+        if (hintEl) hintEl.textContent = `Награда за День ${todayItem.day} из 7 готова!`;
+        if (timerEl) {
+          timerEl.textContent = 'Доступно прямо сейчас';
+          timerEl.className = 'font-tektur text-[11px] text-[#53DB42] mt-0.5';
+        }
+        if (claimBtn && claimBtn.disabled) {
+          renderDailyCalendar();
+        }
+        if (btnContent) {
+          const cleanLabel = todayItem.type === 'stars'
+            ? `${todayItem.amount} ${starIconDark}`
+            : todayItem.label;
+          btnContent.innerHTML = `Забрать (${cleanLabel})`;
+        }
+      } else {
+        if (readyDot) readyDot.classList.add('hidden');
+        if (hintEl) hintEl.textContent = `Следующий День ${todayItem.day} из 7 откроется позже`;
+        if (timerEl) {
+          timerEl.textContent = `Следующая награда через: ${formatCountdown(rem)}`;
+          timerEl.className = 'font-tektur text-[11px] text-[#FBD506] mt-0.5';
+        }
+        if (claimBtn) claimBtn.disabled = true;
+        if (btnContent) btnContent.textContent = `Через ${formatCountdown(rem)}`;
+      }
     }
 
     function renderDailyCalendar() {
       const grid = document.getElementById('dailyCalendarGrid');
-      const available = canClaimDailyToday();
+      const available = canClaimDailyNow();
       const currentIdx = state.dailyDayIndex;
 
       grid.innerHTML = DAILY_REWARDS_7D.map((item, idx) => {
-        const isClaimed = idx < currentIdx || (idx === currentIdx && !available);
-        const isToday = idx === currentIdx && available;
+        // Зелёным помечаются ТОЛЬКО уже забранные дни (< currentIdx).
+        // Все будущие дни (в т.ч. 2-й день, пока он не забран) остаются нейтральными серыми!
+        const isClaimed = idx < currentIdx;
+        const isTodayAvailable = idx === currentIdx && available;
+        const isNextLocked = idx === currentIdx && !available;
         const isLastDay = idx === 6;
 
         let borderClass = 'border-white/10 bg-[#1E1F23]';
-        if (isToday) borderClass = 'border-[#FBD506] bg-[#FBD506]/15 shadow-[0_0_16px_rgba(251,213,6,0.25)]';
-        else if (isClaimed) borderClass = 'border-[#53DB42]/45 bg-[#53DB42]/10 opacity-75';
-        else if (isLastDay) borderClass = 'border-emerald-400/45 bg-emerald-500/10';
+        let badgeHtml = '';
+
+        if (isClaimed) {
+          borderClass = 'border-[#53DB42]/50 bg-[#53DB42]/12';
+          badgeHtml = '<span class="text-[#53DB42]">✓ Забрано</span>';
+        } else if (isTodayAvailable) {
+          borderClass = 'border-[#FBD506] bg-[#FBD506]/15 shadow-[0_0_16px_rgba(251,213,6,0.25)]';
+          badgeHtml = '<span class="text-[#FBD506]">ДОСТУПНО</span>';
+        } else if (isNextLocked) {
+          borderClass = 'border-white/15 bg-[#1B1C20] opacity-75';
+          badgeHtml = '<span class="text-white/45">ЖДЁТ</span>';
+        } else {
+          // Будущие дни (день 2, 3, ..., 7 до их наступления) — строго серые
+          borderClass = 'border-white/[0.07] bg-[#18191D] opacity-60';
+          badgeHtml = '';
+        }
 
         return `
           <div class="${isLastDay ? 'col-span-3 sm:col-span-2' : ''} rounded-xl border ${borderClass} p-2.5 flex flex-col items-center justify-between text-center gap-1.5 relative">
             <div class="w-full flex items-center justify-between text-[10px] font-tektur font-bold">
-              <span class="${isToday ? 'text-[#FBD506]' : 'text-white/55'}">День ${item.day}</span>
-              ${isClaimed ? '<span class="text-[#53DB42]">✓</span>' : (isToday ? '<span class="text-[#FBD506]">СЕГОДНЯ</span>' : '')}
+              <span class="${isTodayAvailable ? 'text-[#FBD506]' : (isClaimed ? 'text-[#53DB42]' : 'text-white/50')}">День ${item.day}</span>
+              ${badgeHtml}
             </div>
-            <div class="my-0.5">${renderGiftSvg(item.svgType, 36)}</div>
+            <div class="my-0.5 ${!isClaimed && !isTodayAvailable ? 'grayscale opacity-75' : ''}">${renderGiftSvg(item.svgType, 36)}</div>
             <div class="font-tektur text-xs font-extrabold text-white">${item.label}</div>
             <div class="text-[9px] text-white/45">${item.sub}</div>
           </div>
@@ -1841,27 +1987,17 @@
       }).join('');
 
       const claimBtn = document.getElementById('claimDailyRewardBtn');
-      const hintEl = document.getElementById('dailyStatusHint');
-      const todayItem = DAILY_REWARDS_7D[currentIdx];
-
-      if (available) {
-        claimBtn.disabled = false;
-        claimBtn.textContent = `Забрать (${todayItem.label})`;
-        hintEl.textContent = `Доступна награда за День ${todayItem.day} из 7`;
-      } else {
-        claimBtn.disabled = true;
-        claimBtn.textContent = 'Получено сегодня';
-        hintEl.textContent = 'Возвращайтесь завтра за следующей наградой!';
-      }
+      claimBtn.disabled = !available;
+      updateDailyTimersOnly();
     }
 
     function handleClaimDailyReward() {
-      if (!canClaimDailyToday()) {
-        showToast('Сегодняшняя награда уже получена!', 'info');
+      if (!canClaimDailyNow()) {
+        showToast(`Следующая награда будет доступна через ${formatCountdown(getRemainingDailyMs())}`, 'info');
         return;
       }
       const reward = DAILY_REWARDS_7D[state.dailyDayIndex];
-      state.lastDailyDate = getTodayDateKey();
+      state.lastDailyTs = Date.now();
 
       if (reward.type === 'stars') {
         state.balance = Number((state.balance + reward.amount).toFixed(2));
@@ -1875,7 +2011,7 @@
         showToast(`День 7: получен подарок ${giftObj.name} (${giftObj.price} ⭐)!`, 'win');
       }
 
-      // Переход к следующему дню; после 7-го дня (индекс 6) цикл сбрасывается на 0 (День 1)
+      // После 7-го дня (индекс 6) цикл сбрасывается и начинается заново с 1-го дня (индекс 0)
       state.dailyDayIndex = (state.dailyDayIndex + 1) % 7;
 
       playWinSound();
@@ -1987,7 +2123,7 @@
     }
 
     // =========================================================
-    // 7. АНИМАЦИЯ ВРАЩЕНИЯ АПГРЕЙДА
+    // 7. АНИМАЦИЯ ВРАЩЕНИЯ АПГРЕЙДА (НЕДОКАТ / ПЕРЕКАТ ОТ 2-3 ММ)
     // =========================================================
     function easeSmoothAccelDecel(t) {
       if (t <= 0) return 0;
@@ -2093,24 +2229,30 @@
       let targetAngleDeg;
 
       if (isWin) {
-        const margin = Math.min(2.0, halfDeg * 0.18);
-        const safeHalf = Math.max(0.15, halfDeg - margin);
-        const edgeBias = Math.random() < 0.65
-          ? (Math.random() < 0.5 ? -1 : 1) * (safeHalf * (0.65 + Math.random() * 0.32))
+        const margin = Math.min(2.5, halfDeg * 0.22);
+        const safeHalf = Math.max(0.2, halfDeg - margin);
+        const edgeBias = Math.random() < 0.6
+          ? (Math.random() < 0.5 ? -1 : 1) * (safeHalf * (0.55 + Math.random() * 0.38))
           : (Math.random() * 2 - 1) * safeHalf;
         targetAngleDeg = (180 + edgeBias + 360) % 360;
       } else {
         const loseSpan = 360 - halfDeg * 2;
-        const maxBaitOffset = Math.max(0.45, Math.min(3.4, loseSpan * 0.35));
-        const minBaitOffset = Math.min(0.35, maxBaitOffset * 0.3);
+        // Минимум 3.4° (~2-3 мм по дуге колеса) и до 8.5° от границы сектора, чтобы не было остановки в 1 мм
+        const minBaitOffset = Math.min(3.4, loseSpan * 0.25);
+        const maxBaitOffset = Math.max(minBaitOffset + 1.5, Math.min(8.5, loseSpan * 0.42));
 
         if (Math.random() < 0.85) {
           const baitGap = minBaitOffset + Math.random() * (maxBaitOffset - minBaitOffset);
-          if (Math.random() < 0.5) targetAngleDeg = (winStart - baitGap + 360) % 360;
-          else targetAngleDeg = (winEnd + baitGap) % 360;
+          if (Math.random() < 0.5) {
+            // Недокат на 2-3+ мм до начала сектора
+            targetAngleDeg = (winStart - baitGap + 360) % 360;
+          } else {
+            // Перекат на 2-3+ мм после конца сектора
+            targetAngleDeg = (winEnd + baitGap) % 360;
+          }
         } else {
-          const margin = Math.min(3.0, loseSpan * 0.12);
-          const safeLose = Math.max(2, loseSpan - margin * 2);
+          const margin = Math.min(9.0, loseSpan * 0.15);
+          const safeLose = Math.max(4, loseSpan - margin * 2);
           targetAngleDeg = (winEnd + margin + Math.random() * safeLose) % 360;
         }
       }
@@ -2195,7 +2337,7 @@
           chance: `x${mult}`,
           color: '#34D399',
           svgType: 'star',
-          user: 'Вы (Mystery)'
+          user: tgUser && tgUser.username ? `@${tgUser.username}` : 'Вы (Mystery)'
         });
         showToast(`Mystery: выпало +${fmtStars(wonStars)} ⭐ (x${mult})!`, 'win');
       } else {
@@ -2232,7 +2374,7 @@
           chance: 'MYSTERY',
           color: wonGift.color,
           svgType: wonGift.svgType,
-          user: 'Вы (Mystery)'
+          user: tgUser && tgUser.username ? `@${tgUser.username}` : 'Вы (Mystery)'
         });
         showToast(`Mystery: получен подарок ${wonGift.name} (${wonGift.price} ⭐)!`, 'win');
       }
@@ -2249,6 +2391,7 @@
       const wrapper = document.getElementById('wheelWrapper');
       let targetLabel = '';
       let wonAmount = 0;
+      const displayUser = tgUser && tgUser.username ? `@${tgUser.username}` : 'Вы (STARGRADER)';
 
       if (isWin) {
         playWinSound();
@@ -2269,7 +2412,7 @@
               chance: metrics.chance.toFixed(2) + '%',
               color: wonGift.color,
               svgType: wonGift.svgType,
-              user: 'Вы (STARGRADER)'
+              user: displayUser
             });
             showToast(`Успешный апгрейд! Получен ${wonGift.name}`, 'win');
           }
@@ -2283,7 +2426,7 @@
             chance: metrics.chance.toFixed(2) + '%',
             color: '#FBD506',
             svgType: 'star',
-            user: 'Вы (STARGRADER)'
+            user: displayUser
           });
           showToast(`Победа! Начислено +${fmtStars(wonStars)} ⭐`, 'win');
         }
@@ -2590,7 +2733,7 @@
         leftCard.classList.add('user-side');
         leftAvatar.className = 'w-8 h-8 rounded-full bg-[#FBD506]/20 border border-[#FBD506]/50 flex items-center justify-center font-tektur text-xs font-extrabold text-[#FBD506]';
         leftAvatar.textContent = 'ВЫ';
-        leftName.textContent = 'Ваша ставка';
+        leftName.textContent = tgUser ? tgUser.first_name : 'Ваша ставка';
         leftTag.textContent = 'Сторона определится случайно';
         leftTag.className = 'text-[10px] text-[#FBD506]';
         leftChance.textContent = userBet > 0 ? 'ГОТОВ' : '0.00%';
@@ -2630,7 +2773,7 @@
           card.classList.add('user-side');
           avatar.className = 'w-8 h-8 rounded-full bg-[#FBD506]/20 border border-[#FBD506]/50 flex items-center justify-center font-tektur text-xs font-extrabold text-[#FBD506]';
           avatar.textContent = 'ВЫ';
-          nameEl.textContent = `Вы (${sideLabel})`;
+          nameEl.textContent = `${tgUser ? tgUser.first_name : 'Вы'} (${sideLabel})`;
           tagEl.textContent = 'Ваша сторона';
           tagEl.className = 'text-[10px] text-[#FBD506]';
           chanceEl.textContent = userPct;
@@ -2934,7 +3077,7 @@
           chance: `${userPct.toFixed(2)}%`,
           color: '#53DB42',
           svgType: 'trophy',
-          user: 'Вы (Батл)'
+          user: tgUser && tgUser.username ? `@${tgUser.username}` : 'Вы (Батл)'
         });
         showToast(`Победа в батле! Вы забрали весь банк (${fmtStars(totalBank)} ⭐)!`, 'win');
       } else {
@@ -3032,26 +3175,29 @@
     }
 
     // =========================================================
-    // 11. РЕНДЕР ВСЕГО ИНТЕРФЕЙСА И ПРОФИЛЯ
+    // 11. РЕНДЕР ВСЕГО ИНТЕРФЕЙСА И ПРОФИЛЯ TELEGRAM
     // =========================================================
     function renderProfileSection() {
       const avatarBox = document.getElementById('profileAvatarBox');
       const nameEl = document.getElementById('profileDisplayName');
       const userSubEl = document.getElementById('profileUsernameText');
+      const dbBadge = document.getElementById('profileDbStatusBadge');
 
-      if (tgUser) {
+      if (tgUser && tgUser.id) {
         const fullName = [tgUser.first_name, tgUser.last_name].filter(Boolean).join(' ') || 'Игрок Telegram';
         nameEl.textContent = fullName;
-        userSubEl.textContent = `${tgUser.username ? '@' + tgUser.username : 'Без username'} • ID: ${tgUser.id}`;
+        userSubEl.textContent = `${tgUser.username ? '@' + tgUser.username : 'Без @username'} • ID: ${tgUser.id}`;
         if (tgUser.photo_url) {
-          avatarBox.innerHTML = `<img src="${tgUser.photo_url}" alt="Avatar" class="w-full h-full object-cover rounded-2xl" />`;
+          avatarBox.innerHTML = `<img src="${tgUser.photo_url}" alt="Avatar" class="w-full h-full object-cover" />`;
         } else {
           avatarBox.textContent = (tgUser.first_name || 'TG').slice(0, 2).toUpperCase();
         }
+        dbBadge.textContent = DB_API_BASE ? 'БД Telegram (Online)' : 'БД Telegram (Локально)';
       } else {
         nameEl.textContent = 'Игрок Telegram';
-        userSubEl.textContent = '@guest • Откройте через бота для привязки ID';
+        userSubEl.textContent = 'Запустите Web App через кнопку в боте';
         avatarBox.textContent = 'TG';
+        dbBadge.textContent = 'Локальная БД';
       }
 
       const { games, wins, losses, totalWagered, totalWon } = state.stats;
@@ -3126,16 +3272,14 @@
       if (state.mysteryMode) mysteryBtn.classList.add('active');
       else mysteryBtn.classList.remove('active');
 
-      // Индикатор ежедневного бонуса в шапке
       const readyDot = document.getElementById('dailyReadyDot');
       const dailyBtnText = document.getElementById('headerDailyBtnText');
-      if (canClaimDailyToday()) {
+      if (canClaimDailyNow()) {
         readyDot.classList.remove('hidden');
-        dailyBtnText.textContent = `День ${state.dailyDayIndex + 1}/7`;
       } else {
         readyDot.classList.add('hidden');
-        dailyBtnText.textContent = `День ${state.dailyDayIndex + 1}/7`;
       }
+      dailyBtnText.textContent = `День ${state.dailyDayIndex + 1}/7`;
     }
 
     function renderAll() {
@@ -3378,7 +3522,7 @@
     }
 
     // =========================================================
-    // 12. НАВИГАЦИЯ (АПГРЕЙД / БАТЛ / ПРОФИЛЬ) И НАСТРОЙКИ
+    // 12. НАВИГАЦИЯ И НАСТРОЙКИ
     // =========================================================
     function switchMainPage(page) {
       if (state.spinning || state.battleSpinning || state.battleActive) return;
@@ -3493,11 +3637,20 @@
     // 13. ИНИЦИАЛИЗАЦИЯ И ВСЕ ОБРАБОТЧИКИ СОБЫТИЙ
     // =========================================================
     window.addEventListener('DOMContentLoaded', () => {
-      loadState();
+      loadLocalState();
       document.getElementById('bestDropIcon').innerHTML = renderGiftSvg('pepe', 42);
       renderLiveFeed();
       renderAll();
       detectAndApplyDeviceLayout();
+      loadRemoteDbState();
+
+      // Фоновое обновление индикатора ежедневного бонуса в шапке
+      setInterval(() => {
+        const readyDot = document.getElementById('dailyReadyDot');
+        if (readyDot) {
+          readyDot.classList.toggle('hidden', !canClaimDailyNow());
+        }
+      }, 1000);
 
       document.getElementById('logoResetNav').addEventListener('click', (e) => {
         e.preventDefault();
@@ -3508,7 +3661,6 @@
         btn.addEventListener('click', () => switchMainPage(btn.dataset.nav));
       });
 
-      // Ежедневный 7-дневный календарь
       document.getElementById('openDailyModalBtn').addEventListener('click', openDailyModal);
       document.getElementById('overlayOpenDailyBtn').addEventListener('click', openDailyModal);
       document.getElementById('closeDailyModalBtn').addEventListener('click', closeDailyModal);
@@ -3517,10 +3669,8 @@
         if (e.target.id === 'dailyModalBackdrop') closeDailyModal();
       });
 
-      // Синхронизация профиля с ботом
       document.getElementById('syncTelegramBtn').addEventListener('click', syncStatsWithTelegramBot);
 
-      // Сброс прогресса до 0 ⭐
       document.getElementById('resetProgressBtn').addEventListener('click', () => {
         if (state.spinning || state.battleSpinning) return;
         if (state.battleCountdownTimer) {
@@ -3541,7 +3691,7 @@
         state.lossStreak = 0;
         state.history = [];
         state.dailyDayIndex = 0;
-        state.lastDailyDate = '';
+        state.lastDailyTs = 0;
         state.stats = { games: 0, wins: 0, losses: 0, totalWagered: 0, totalWon: 0 };
         saveState();
         renderAll();
